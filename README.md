@@ -9,5 +9,8 @@ React Native Expo app.
 -   Prop drilling
 -   Styled components
 -   Theming
+-   Fonts
+-   SVG
+-   Components according to design system (Spacer)
 
 ### Libraries

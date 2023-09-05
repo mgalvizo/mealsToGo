@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    StyleSheet,
+    // StyleSheet,
     StatusBar,
     // Platform
 } from 'react-native';
@@ -15,14 +15,14 @@ const SafeArea = styled.SafeAreaView`
     ${StatusBar.currentHeight && `padding-top: ${StatusBar.currentHeight}px`}
 `;
 
+// A theme can also be passed down to a component using the theme prop
 const SearchContainer = styled.View`
-    padding: 16px;
+    padding: ${props => props.theme.SPACE[3]};
 `;
 
 const RestaurantListContainer = styled.View`
     flex: 1;
-    padding: 16px;
-    background-color: blue;
+    padding: ${props => props.theme.SPACE[3]};
 `;
 
 const Restaurants = () => {
@@ -40,4 +40,4 @@ const Restaurants = () => {
 
 export default Restaurants;
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
