@@ -1,16 +1,10 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import Spacer from '../../../components/Spacer/Spacer.component';
+import SafeArea from '../../../components/Utils/SafeArea.component';
 import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
-
-const SafeArea = styled.SafeAreaView`
-    flex: 1;
-    /* Guard for iOS, StatusBar does NOT exist on iOS */
-    ${StatusBar.currentHeight && `padding-top: ${StatusBar.currentHeight}px`}
-`;
 
 // A theme can also be passed down to a component using the theme prop
 const SearchContainer = styled.View`
