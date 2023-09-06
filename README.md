@@ -11,6 +11,6 @@ React Native Expo app.
 -   Theming
 -   Fonts
 -   SVG
--   Components according to design system (Spacer)
+-   Components according to design system (Spacer, Text)
 
 ### Libraries
