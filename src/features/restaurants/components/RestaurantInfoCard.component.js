@@ -34,9 +34,9 @@ const RestaurantInfo = ({ restaurant = {} }) => {
     // Create array with "rating" number of elements filled with 0
     const ratingArray = Array.from(new Array(Math.floor(rating)).fill(0));
 
-    const renderRating = ratingArray.map(rating => {
+    const renderRating = ratingArray.map((rating, index) => {
         // Loading svg as xml
-        return <SvgXml xml={star} width={20} height={20} />;
+        return <SvgXml xml={star} width={20} height={20} key={index} />;
     });
 
     return (

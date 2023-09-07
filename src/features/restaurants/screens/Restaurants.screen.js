@@ -1,9 +1,10 @@
-import React from 'react';
-import { Searchbar } from 'react-native-paper';
+import React, { useContext } from 'react';
+import { Searchbar, ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import Spacer from '../../../components/Spacer/Spacer.component';
 import SafeArea from '../../../components/Utils/SafeArea.component';
+import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
 
 // A theme can also be passed down to a component using the theme prop
@@ -19,30 +20,41 @@ const RestaurantList = styled.FlatList.attrs({
     },
 })``;
 
+const Loading = styled(ActivityIndicator).attrs(({ theme }) => {
+    return {
+        size: theme.SIZES[2],
+        color: theme.COLORS.brand.primary,
+    };
+})`
+    margin-left: -25px;
+`;
+
+const LoadingContainer = styled.View`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+`;
+
 const Restaurants = () => {
+    const { restaurants, isLoading, error } = useContext(RestaurantContext);
+
     return (
         <SafeArea>
             <SearchContainer>
                 <Searchbar />
             </SearchContainer>
+            {isLoading && (
+                <LoadingContainer>
+                    <Loading animating />
+                </LoadingContainer>
+            )}
             <RestaurantList
-                data={[
-                    { name: 1 },
-                    { name: 2 },
-                    { name: 3 },
-                    { name: 4 },
-                    { name: 5 },
-                    { name: 6 },
-                    { name: 7 },
-                    { name: 8 },
-                    { name: 9 },
-                    { name: 10 },
-                ]}
+                data={restaurants}
                 keyExtractor={restaurant => restaurant.name}
-                renderItem={() => {
+                renderItem={({ item }) => {
                     return (
                         <Spacer position="bottom" size="large">
-                            <RestaurantInfoCard />
+                            <RestaurantInfoCard restaurant={item} />
                         </Spacer>
                     );
                 }}
