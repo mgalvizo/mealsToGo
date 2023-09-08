@@ -1,16 +1,12 @@
 import React, { useContext } from 'react';
-import { Searchbar, ActivityIndicator, Colors } from 'react-native-paper';
+import { Searchbar, ActivityIndicator } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import Spacer from '../../../components/Spacer/Spacer.component';
 import SafeArea from '../../../components/Utils/SafeArea.component';
 import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
-
-// A theme can also be passed down to a component using the theme prop
-const SearchContainer = styled.View`
-    padding: ${props => props.theme.SPACE[3]};
-`;
+import Search from '../components/Search.component';
 
 // Gets access to the attributes of the FlatList
 const RestaurantList = styled.FlatList.attrs({
@@ -40,14 +36,12 @@ const Restaurants = () => {
 
     return (
         <SafeArea>
-            <SearchContainer>
-                <Searchbar />
-            </SearchContainer>
             {isLoading && (
                 <LoadingContainer>
                     <Loading animating />
                 </LoadingContainer>
             )}
+            <Search />
             <RestaurantList
                 data={restaurants}
                 keyExtractor={restaurant => restaurant.name}

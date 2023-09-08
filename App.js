@@ -19,6 +19,7 @@ import { ThemeProvider } from 'styled-components/native';
 import SafeArea from './src/components/Utils/SafeArea.component';
 import RestaurantsScreen from './src/features/restaurants/screens/Restaurants.screen';
 import { THEME } from './src/infrastructure/theme';
+import LocationProvider from './src/services/location/location.context';
 import RestaurantProvider from './src/services/restaurants/restaurants.context';
 
 SplashScreen.preventAutoHideAsync();
@@ -66,19 +67,21 @@ const App = () => {
 
     return (
         <View style={styles.appContainer} onLayout={onLayoutRootView}>
-            <RestaurantProvider>
-                <ThemeProvider theme={THEME}>
-                    <NavigationContainer>
-                        <Tab.Navigator screenOptions={createScreenOptions}>
-                            <Tab.Screen
-                                name="Restaurants"
-                                component={RestaurantsScreen}
-                            />
-                        </Tab.Navigator>
-                    </NavigationContainer>
-                    <ExpoStatusBar style="auto" />
-                </ThemeProvider>
-            </RestaurantProvider>
+            <ThemeProvider theme={THEME}>
+                <LocationProvider>
+                    <RestaurantProvider>
+                        <NavigationContainer>
+                            <Tab.Navigator screenOptions={createScreenOptions}>
+                                <Tab.Screen
+                                    name="Restaurants"
+                                    component={RestaurantsScreen}
+                                />
+                            </Tab.Navigator>
+                        </NavigationContainer>
+                        <ExpoStatusBar style="auto" />
+                    </RestaurantProvider>
+                </LocationProvider>
+            </ThemeProvider>
         </View>
     );
 };

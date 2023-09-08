@@ -1,9 +1,10 @@
-import React, { useReducer, createContext, useEffect, useMemo } from 'react';
+import React, { useReducer, createContext, useEffect, useContext } from 'react';
 
 import {
     restaurantsRequest,
     restaurantsTransform,
 } from './restaurants.service';
+import { LocationContext } from '../location/location.context';
 
 const initialState = {
     restaurants: [],
@@ -22,11 +23,11 @@ const restaurantReducer = (state, action) => {
 
     switch (type) {
         case 'FETCH_START':
-            return { ...state, isLoading: true };
+            return { ...state, isLoading: true, restaurants: [] };
         case 'FETCH_SUCCESS':
             return {
                 ...state,
-                restaurants: [...state.restaurants, ...payload],
+                restaurants: [...payload],
                 isLoading: false,
                 error: null,
             };
@@ -41,12 +42,13 @@ const RestaurantContext = createContext(initialValue);
 
 const RestaurantProvider = ({ children }) => {
     const [state, dispatch] = useReducer(restaurantReducer, initialState);
+    const { location } = useContext(LocationContext);
 
-    const retrieveRestaurants = async () => {
+    const retrieveRestaurants = async location => {
         dispatch({ type: 'FETCH_START' });
         try {
             setTimeout(async () => {
-                const rawResults = await restaurantsRequest();
+                const rawResults = await restaurantsRequest(location);
                 const transformedResults = restaurantsTransform(rawResults);
 
                 dispatch({
@@ -60,8 +62,11 @@ const RestaurantProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        retrieveRestaurants();
-    }, []);
+        if (location) {
+            const locationString = `${location.lat},${location.lng}`;
+            retrieveRestaurants(locationString);
+        }
+    }, [location]);
 
     const contextValue = {
         restaurants: state.restaurants,
