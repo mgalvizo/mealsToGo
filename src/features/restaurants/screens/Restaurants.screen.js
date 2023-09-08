@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Searchbar, ActivityIndicator } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import Spacer from '../../../components/Spacer/Spacer.component';
@@ -31,7 +32,8 @@ const LoadingContainer = styled.View`
     left: 50%;
 `;
 
-const Restaurants = () => {
+// Access to navigation prop since component is a screen in the navigator
+const Restaurants = ({ navigation }) => {
     const { restaurants, isLoading, error } = useContext(RestaurantContext);
 
     return (
@@ -47,9 +49,18 @@ const Restaurants = () => {
                 keyExtractor={restaurant => restaurant.name}
                 renderItem={({ item }) => {
                     return (
-                        <Spacer position="bottom" size="large">
-                            <RestaurantInfoCard restaurant={item} />
-                        </Spacer>
+                        <TouchableOpacity
+                            // Pass the whole object as a parameter
+                            onPress={() =>
+                                navigation.navigate('RestaurantDetail', {
+                                    restaurant: item,
+                                })
+                            }
+                        >
+                            <Spacer position="bottom" size="large">
+                                <RestaurantInfoCard restaurant={item} />
+                            </Spacer>
+                        </TouchableOpacity>
                     );
                 }}
             />

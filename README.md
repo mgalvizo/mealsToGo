@@ -12,8 +12,11 @@ React Native Expo app.
 -   Fonts
 -   SVG
 -   Components according to design system (Spacer, Text)
--   Navigation (Bottom Tabs)
+-   Navigation (Bottom Tabs, Stack)
+-   Nested navigation
 -   Mock Data
 -   Context API
+-   Activity indicator
+-   Accordion menu list
 
 ### Libraries
