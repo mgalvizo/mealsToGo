@@ -19,7 +19,7 @@ const locationTransform = result => {
     const { geometry = {} } = formattedResponse.results[0];
     const { lat, lng } = geometry.location;
 
-    return { lat, lng };
+    return { lat, lng, viewport: geometry.viewport };
 };
 
 export { locationRequest, locationTransform };

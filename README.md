@@ -18,5 +18,7 @@ React Native Expo app.
 -   Context API
 -   Activity indicator
 -   Accordion menu list
+-   Maps with markers and callout (tooltip)
+-   Latitude Delta calculation
 
 ### Libraries

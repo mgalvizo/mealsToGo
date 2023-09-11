@@ -2,8 +2,8 @@ import React, { useReducer } from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
-import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
 import SafeArea from '../../../components/Utils/SafeArea.component';
+import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
 
 const initialState = {
     breakfastExpanded: false,
@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const listReducer = (state, action) => {
-    const { type, payload } = action;
+    const { type } = action;
 
     switch (type) {
         case 'BREAKFAST_EXPANDED':

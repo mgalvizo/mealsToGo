@@ -7,12 +7,17 @@ import { LocationContext } from '../../../services/location/location.context';
 // A theme can also be passed down to a component using the theme prop
 const SearchContainer = styled.View`
     padding: ${({ theme }) => theme.SPACE[3]};
+    position: absolute;
+    z-index: 999;
+    top: 40px;
+    width: 100%;
 `;
 
 const Search = () => {
     const { keyword, search } = useContext(LocationContext);
     const [searchKeyword, setSearchKeyword] = useState(keyword);
 
+    // Update the local keyword state
     useEffect(() => {
         setSearchKeyword(keyword);
     }, [keyword]);
@@ -21,6 +26,7 @@ const Search = () => {
         <SearchContainer>
             <Searchbar
                 placeholder="Search for a location"
+                icon="map"
                 value={searchKeyword}
                 // Callback that is called when the text input's submit button is pressed.
                 onSubmitEditing={() => {
