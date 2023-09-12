@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import {
@@ -14,6 +14,7 @@ import {
 } from './RestaurantInfoCard.styles';
 import open from '../../../../assets/open';
 import star from '../../../../assets/star';
+import Favourite from '../../../components/Favourites/Favourite.component';
 import Spacer from '../../../components/Spacer/Spacer.component';
 import Text from '../../../components/Typography/Text.component';
 
@@ -49,7 +50,10 @@ const RestaurantInfo = ({ restaurant = {} }) => {
 
     return (
         <RestaurantCard elevation={5}>
-            <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+            <View>
+                <Favourite restaurant={restaurant} />
+                <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+            </View>
             <Info>
                 <Text variant="label">{name}</Text>
                 <Section>
@@ -75,5 +79,3 @@ const RestaurantInfo = ({ restaurant = {} }) => {
 };
 
 export default RestaurantInfo;
-
-const styles = StyleSheet.create({});

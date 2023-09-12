@@ -9,7 +9,7 @@ const SearchContainer = styled.View`
     padding: ${({ theme }) => theme.SPACE[3]};
 `;
 
-const Search = () => {
+const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
     const { keyword, search } = useContext(LocationContext);
     const [searchKeyword, setSearchKeyword] = useState(keyword);
 
@@ -20,6 +20,8 @@ const Search = () => {
     return (
         <SearchContainer>
             <Searchbar
+                icon={isFavouritesToggled ? 'heart' : 'heart-outline'}
+                onIconPress={onFavouritesToggle}
                 placeholder="Search for a location"
                 value={searchKeyword}
                 // Callback that is called when the text input's submit button is pressed.

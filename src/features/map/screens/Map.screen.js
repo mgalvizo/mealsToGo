@@ -20,8 +20,6 @@ const MapScreen = ({ navigation }) => {
 
     const { lat, lng, viewport } = location;
 
-    console.log(location);
-
     // Latitude delta calculation
     useEffect(() => {
         const northeastLat = viewport.northeast.lat;

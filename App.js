@@ -16,6 +16,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import Navigation from './src/infrastructure/navigation';
 import { THEME } from './src/infrastructure/theme';
+import FavouritesProvider from './src/services/favourites/favourites.context';
 import LocationProvider from './src/services/location/location.context';
 import RestaurantProvider from './src/services/restaurants/restaurants.context';
 
@@ -44,11 +45,13 @@ const App = () => {
     return (
         <View style={styles.appContainer} onLayout={onLayoutRootView}>
             <ThemeProvider theme={THEME}>
-                <LocationProvider>
-                    <RestaurantProvider>
-                        <Navigation />
-                    </RestaurantProvider>
-                </LocationProvider>
+                <FavouritesProvider>
+                    <LocationProvider>
+                        <RestaurantProvider>
+                            <Navigation />
+                        </RestaurantProvider>
+                    </LocationProvider>
+                </FavouritesProvider>
             </ThemeProvider>
             <ExpoStatusBar style="auto" />
         </View>
