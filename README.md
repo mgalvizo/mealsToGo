@@ -22,5 +22,7 @@ React Native Expo app.
 -   Latitude Delta calculation
 -   Async storage
 -   Firebase
+-   Authentication
+-   Animations
 
 ### Libraries

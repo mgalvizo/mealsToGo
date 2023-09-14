@@ -1,3 +1,4 @@
+import LottieView from 'lottie-react-native';
 import { Button, TextInput } from 'react-native-paper';
 import styled from 'styled-components/native';
 

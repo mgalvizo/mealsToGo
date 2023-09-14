@@ -36,7 +36,7 @@ const LoadingContainer = styled.View`
 
 // Access to navigation prop since component is a screen in the navigator
 const Restaurants = ({ navigation }) => {
-    const { restaurants, isLoading, error } = useContext(RestaurantContext);
+    const { restaurants, isLoading } = useContext(RestaurantContext);
     const { favourites } = useContext(FavouritesContext);
     const [isToggled, setIsToggled] = useState(false);
 

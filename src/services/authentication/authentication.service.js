@@ -5,6 +5,9 @@ import {
     initializeAuth,
     getReactNativePersistence,
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
 } from 'firebase/auth';
 
 // Your web app's Firebase configuration
@@ -28,4 +31,18 @@ const loginRequest = async (email, password) => {
     return await signInWithEmailAndPassword(auth, email, password);
 };
 
-export { loginRequest };
+const registerRequest = async (email, password) => {
+    return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+const logoutRequest = async () => await signOut(auth);
+
+const onAuthStateChangedListener = callback =>
+    onAuthStateChanged(auth, callback);
+
+export {
+    loginRequest,
+    registerRequest,
+    logoutRequest,
+    onAuthStateChangedListener,
+};

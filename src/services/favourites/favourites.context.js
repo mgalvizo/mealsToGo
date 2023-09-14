@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer, useContext } from 'react';
+
+import { AuthenticationContext } from '../../services/authentication/authentication.context';
 
 const initialState = {
     favourites: [],
@@ -34,22 +36,24 @@ const favouritesReducer = (state, action) => {
 const FavouritesContext = createContext(initialValue);
 
 const FavouritesProvider = ({ children }) => {
+    const { user } = useContext(AuthenticationContext);
+
     const [state, dispatch] = useReducer(favouritesReducer, initialState);
 
     // Value is the array of favourites
-    const saveFavourites = async value => {
+    const saveFavourites = async (value, uid) => {
         try {
             // Convert to JSON string
             const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem('@favourites', jsonValue);
+            await AsyncStorage.setItem(`@favourites-${uid}`, jsonValue);
         } catch (err) {
             console.log('error storing', err);
         }
     };
 
-    const loadFavourites = async () => {
+    const loadFavourites = async uid => {
         try {
-            const value = await AsyncStorage.getItem('@favourites');
+            const value = await AsyncStorage.getItem(`@favourites-${uid}`);
             if (value !== null) {
                 // Convert to JavaScript object
                 dispatch({ type: 'SET', payload: JSON.parse(value) });
@@ -69,13 +73,17 @@ const FavouritesProvider = ({ children }) => {
 
     // Load the favourites on initial render
     useEffect(() => {
-        loadFavourites();
-    }, []);
+        if (user && user.uid) {
+            loadFavourites(user.uid);
+        }
+    }, [user]);
 
     // Everytime favourites changes, the saveFavourites function will run
     useEffect(() => {
-        saveFavourites(state.favourites);
-    }, [state.favourites]);
+        if (user && user.uid && state.favourites.length) {
+            saveFavourites(state.favourites, user.uid);
+        }
+    }, [state.favourites, user]);
 
     const contextValue = {
         favourites: state.favourites,
