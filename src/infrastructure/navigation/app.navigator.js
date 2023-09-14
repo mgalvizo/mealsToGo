@@ -1,6 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 
 import RestaurantsNavigator from './Restaurants.navigator';
 import SafeArea from '../../components/Utils/SafeArea.component';
@@ -30,24 +29,22 @@ const createScreenOptions = ({ route }) => {
 
 const AppNavigator = () => {
     return (
-        <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOptions}>
-                <Tab.Screen
-                    name="RestaurantsNavigator"
-                    component={RestaurantsNavigator}
-                    options={{
-                        title: 'Restaurants',
-                    }}
-                />
-                <Tab.Screen
-                    name="Map"
-                    component={MapScreen}
-                    options={{
-                        title: 'Map',
-                    }}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <Tab.Navigator screenOptions={createScreenOptions}>
+            <Tab.Screen
+                name="RestaurantsNavigator"
+                component={RestaurantsNavigator}
+                options={{
+                    title: 'Restaurants',
+                }}
+            />
+            <Tab.Screen
+                name="Map"
+                component={MapScreen}
+                options={{
+                    title: 'Map',
+                }}
+            />
+        </Tab.Navigator>
     );
 };
 

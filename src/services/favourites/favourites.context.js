@@ -7,6 +7,8 @@ const initialState = {
 
 const initialValue = {
     favourites: [],
+    addToFavourites: () => {},
+    removeFromFavourites: () => {},
 };
 
 const favouritesReducer = (state, action) => {

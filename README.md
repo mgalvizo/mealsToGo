@@ -20,5 +20,7 @@ React Native Expo app.
 -   Accordion menu list
 -   Maps with markers and callout (tooltip)
 -   Latitude Delta calculation
+-   Async storage
+-   Firebase
 
 ### Libraries
