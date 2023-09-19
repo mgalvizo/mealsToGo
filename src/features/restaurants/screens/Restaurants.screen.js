@@ -3,21 +3,15 @@ import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import styled from 'styled-components/native';
 
+import FadeInView from '../../../components/Animations/Fade.animation';
 import FavouritesBar from '../../../components/Favourites/FavouritesBar.component';
 import Spacer from '../../../components/Spacer/Spacer.component';
 import SafeArea from '../../../components/Utils/SafeArea.component';
 import { FavouritesContext } from '../../../services/favourites/favourites.context';
 import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
+import { RestaurantList } from '../components/RestaurantList.styles';
 import Search from '../components/Search.component';
-
-// Gets access to the attributes of the FlatList
-const RestaurantList = styled.FlatList.attrs({
-    // These styles will be applied to the scroll view content container which wraps all of the child views
-    contentContainerStyle: {
-        padding: 16,
-    },
-})``;
 
 const Loading = styled(ActivityIndicator).attrs(({ theme }) => {
     return {
@@ -71,7 +65,9 @@ const Restaurants = ({ navigation }) => {
                             }
                         >
                             <Spacer position="bottom" size="large">
-                                <RestaurantInfoCard restaurant={item} />
+                                <FadeInView>
+                                    <RestaurantInfoCard restaurant={item} />
+                                </FadeInView>
                             </Spacer>
                         </TouchableOpacity>
                     );

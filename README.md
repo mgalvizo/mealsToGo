@@ -23,6 +23,7 @@ React Native Expo app.
 -   Async storage
 -   Firebase
 -   Authentication
--   Animations
+-   Animations with Lottie
+-   Animations with Native
 
 ### Libraries
