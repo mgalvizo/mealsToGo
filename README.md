@@ -25,5 +25,6 @@ React Native Expo app.
 -   Authentication
 -   Animations with Lottie
 -   Animations with Native
+-   Taking pictures with camera
 
 ### Libraries
