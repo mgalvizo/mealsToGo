@@ -1,29 +1,24 @@
 import camelize from 'camelize';
 
-import { MOCKS, MOCK_IMAGES } from './mock';
+const restaurantsRequest = async location => {
+    try {
+        const response = await fetch(
+            `https://5e8f-2806-108e-24-83f6-9978-635b-d7d8-b13.ngrok-free.app/mealstogo-15801/us-central1/placesNearby?location=${location}`,
+        );
 
-const restaurantsRequest = location => {
-    return new Promise((resolve, reject) => {
-        const mock = MOCKS[location];
+        const result = await response.json();
 
-        if (!mock) {
-            reject('Restaurants Not Found');
-        }
-
-        resolve(mock);
-    });
+        return result;
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 const restaurantsTransform = ({ results = [] }) => {
     const mappedResults = results.map(restaurant => {
-        restaurant.photos = restaurant.photos.map(photo => {
-            return MOCK_IMAGES[
-                Math.ceil(Math.random() * (MOCK_IMAGES.length - 1))
-            ];
-        });
-
         return {
             ...restaurant,
+            address: restaurant.vicinity,
             isOpenNow:
                 restaurant.opening_hours && restaurant.opening_hours.open_now,
             isClosedTemporarily:

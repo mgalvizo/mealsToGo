@@ -47,15 +47,13 @@ const RestaurantProvider = ({ children }) => {
     const retrieveRestaurants = async location => {
         dispatch({ type: 'FETCH_START' });
         try {
-            setTimeout(async () => {
-                const rawResults = await restaurantsRequest(location);
-                const transformedResults = restaurantsTransform(rawResults);
+            const rawResults = await restaurantsRequest(location);
+            const transformedResults = restaurantsTransform(rawResults);
 
-                dispatch({
-                    type: 'FETCH_SUCCESS',
-                    payload: transformedResults,
-                });
-            }, 2000);
+            dispatch({
+                type: 'FETCH_SUCCESS',
+                payload: transformedResults,
+            });
         } catch (err) {
             dispatch({ type: 'FETCH_FAILED', payload: err });
         }
