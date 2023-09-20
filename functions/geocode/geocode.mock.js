@@ -1,4 +1,4 @@
-const LOCATIONS = {
+module.exports.LOCATIONS = {
     antwerp: {
         results: [
             {
@@ -80,5 +80,3 @@ const LOCATIONS = {
         ],
     },
 };
-
-export { LOCATIONS };
