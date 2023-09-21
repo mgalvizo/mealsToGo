@@ -1,3 +1,4 @@
+// Library has to be installed in the functions directory
 const { Client } = require('@googlemaps/google-maps-services-js');
 const functions = require('firebase-functions');
 
