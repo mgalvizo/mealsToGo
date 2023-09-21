@@ -25,7 +25,12 @@ const locationReducer = (state, action) => {
         case 'LOCATION_START':
             return { ...state, isLoading: true, keyword: payload };
         case 'LOCATION_SUCCESS':
-            return { ...state, isLoading: false, location: payload };
+            return {
+                ...state,
+                isLoading: false,
+                location: payload,
+                error: null,
+            };
         case 'LOCATION_ERROR':
             return { ...state, isLoading: false, error: payload };
         default:
