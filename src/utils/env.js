@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 const liveHost = 'https://us-central1-mealstogo-15801.cloudfunctions.net';
 // Tunnel with ngrok (http://127.0.0.1:5001)
 const localhost =
@@ -5,6 +7,10 @@ const localhost =
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const host = isDevelopment ? localhost : liveHost;
+const isAndroid = Platform.OS === 'android';
 
-export { isDevelopment, host };
+const isMock = false;
+
+const host = !isDevelopment || isAndroid ? liveHost : localhost;
+
+export { isDevelopment, isAndroid, isMock, host };

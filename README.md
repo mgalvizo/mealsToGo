@@ -21,10 +21,11 @@ React Native Expo app.
 -   Maps with markers and callout (tooltip)
 -   Latitude Delta calculation
 -   Async storage
--   Firebase
--   Authentication
+-   Firebase Authentication
 -   Animations with Lottie
 -   Animations with Native
 -   Taking pictures with camera
+-   Firebase functions
+-   Google Places API (Places, Geocoding)
 
 ### Libraries
