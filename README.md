@@ -27,5 +27,7 @@ React Native Expo app.
 -   Taking pictures with camera
 -   Firebase functions
 -   Google Places API (Places, Geocoding)
+-   Stripe
+-   Credit card input
 
 ### Libraries

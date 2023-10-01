@@ -4,6 +4,7 @@ import React from 'react';
 
 import RestaurantsNavigator from './Restaurants.navigator';
 import SettingsNavigator from './Settings.navigator';
+import CheckoutScreen from '../../features/checkout/screens/Checkout.screen';
 import MapScreen from '../../features/map/screens/Map.screen';
 import FavouritesProvider from '../../services/favourites/favourites.context';
 import LocationProvider from '../../services/location/location.context';
@@ -16,6 +17,7 @@ const TAB_ICON = {
     RestaurantsNavigator: 'md-restaurant',
     Map: 'md-map',
     SettingsNavigator: 'md-settings',
+    Checkout: 'md-cart',
 };
 
 const createScreenOptions = ({ route }) => {
@@ -42,6 +44,13 @@ const AppNavigator = () => {
                             component={RestaurantsNavigator}
                             options={{
                                 title: 'Restaurants',
+                            }}
+                        />
+                        <Tab.Screen
+                            name="Checkout"
+                            component={CheckoutScreen}
+                            options={{
+                                title: 'Checkout',
                             }}
                         />
                         <Tab.Screen
