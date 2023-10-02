@@ -1,9 +1,12 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
+import Spacer from '../../../components/Spacer/Spacer.component';
 import SafeArea from '../../../components/Utils/SafeArea.component';
+import { CartContext } from '../../../services/cart/cart.context';
 import RestaurantInfoCard from '../components/RestaurantInfoCard.component';
+import { OrderButton } from '../components/RestaurantList.styles';
 
 const initialState = {
     breakfastExpanded: false,
@@ -30,9 +33,10 @@ const listReducer = (state, action) => {
 };
 
 // Access to route prop since this is a screen component in the navigator
-const RestaurantDetail = ({ route }) => {
+const RestaurantDetail = ({ route, navigation }) => {
     const { restaurant } = route.params;
     const [state, dispatch] = useReducer(listReducer, initialState);
+    const { addToCart } = useContext(CartContext);
 
     const { breakfastExpanded, lunchExpanded, dinnerExpanded, drinksExpanded } =
         state;
@@ -83,6 +87,18 @@ const RestaurantDetail = ({ route }) => {
                     <List.Item title="Fanta" />
                 </List.Accordion>
             </ScrollView>
+            <Spacer position="bottom" size="large">
+                <OrderButton
+                    icon="currency-usd"
+                    mode="contained"
+                    onPress={() => {
+                        addToCart({ item: 'special', price: 1299 }, restaurant);
+                        navigation.navigate('Checkout');
+                    }}
+                >
+                    Order Special Only 12.99!
+                </OrderButton>
+            </Spacer>
         </SafeArea>
     );
 };

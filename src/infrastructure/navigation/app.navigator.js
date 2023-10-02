@@ -6,6 +6,7 @@ import RestaurantsNavigator from './Restaurants.navigator';
 import SettingsNavigator from './Settings.navigator';
 import CheckoutScreen from '../../features/checkout/screens/Checkout.screen';
 import MapScreen from '../../features/map/screens/Map.screen';
+import CartProvider from '../../services/cart/cart.context';
 import FavouritesProvider from '../../services/favourites/favourites.context';
 import LocationProvider from '../../services/location/location.context';
 import RestaurantProvider from '../../services/restaurants/restaurants.context';
@@ -38,36 +39,38 @@ const AppNavigator = () => {
         <FavouritesProvider>
             <LocationProvider>
                 <RestaurantProvider>
-                    <Tab.Navigator screenOptions={createScreenOptions}>
-                        <Tab.Screen
-                            name="RestaurantsNavigator"
-                            component={RestaurantsNavigator}
-                            options={{
-                                title: 'Restaurants',
-                            }}
-                        />
-                        <Tab.Screen
-                            name="Checkout"
-                            component={CheckoutScreen}
-                            options={{
-                                title: 'Checkout',
-                            }}
-                        />
-                        <Tab.Screen
-                            name="Map"
-                            component={MapScreen}
-                            options={{
-                                title: 'Map',
-                            }}
-                        />
-                        <Tab.Screen
-                            name="SettingsNavigator"
-                            component={SettingsNavigator}
-                            options={{
-                                title: 'Settings',
-                            }}
-                        />
-                    </Tab.Navigator>
+                    <CartProvider>
+                        <Tab.Navigator screenOptions={createScreenOptions}>
+                            <Tab.Screen
+                                name="RestaurantsNavigator"
+                                component={RestaurantsNavigator}
+                                options={{
+                                    title: 'Restaurants',
+                                }}
+                            />
+                            <Tab.Screen
+                                name="Checkout"
+                                component={CheckoutScreen}
+                                options={{
+                                    title: 'Checkout',
+                                }}
+                            />
+                            <Tab.Screen
+                                name="Map"
+                                component={MapScreen}
+                                options={{
+                                    title: 'Map',
+                                }}
+                            />
+                            <Tab.Screen
+                                name="SettingsNavigator"
+                                component={SettingsNavigator}
+                                options={{
+                                    title: 'Settings',
+                                }}
+                            />
+                        </Tab.Navigator>
+                    </CartProvider>
                 </RestaurantProvider>
             </LocationProvider>
         </FavouritesProvider>
