@@ -49,7 +49,7 @@ const RestaurantInfo = ({ restaurant = {} }) => {
     });
 
     return (
-        <RestaurantCard elevation={5}>
+        <RestaurantCard elevation={2}>
             <View>
                 <Favourite restaurant={restaurant} />
                 <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
@@ -72,7 +72,7 @@ const RestaurantInfo = ({ restaurant = {} }) => {
                         </Spacer>
                     </SectionEnd>
                 </Section>
-                <Address>{name}</Address>
+                <Address>{address}</Address>
             </Info>
         </RestaurantCard>
     );

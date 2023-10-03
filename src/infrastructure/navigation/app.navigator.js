@@ -4,8 +4,9 @@ import React from 'react';
 
 import RestaurantsNavigator from './Restaurants.navigator';
 import SettingsNavigator from './Settings.navigator';
-import CheckoutScreen from '../../features/checkout/screens/Checkout.screen';
+import CheckoutNavigator from './checkout.navigator';
 import MapScreen from '../../features/map/screens/Map.screen';
+import { COLORS } from '../../infrastructure/theme/colors';
 import CartProvider from '../../services/cart/cart.context';
 import FavouritesProvider from '../../services/favourites/favourites.context';
 import LocationProvider from '../../services/location/location.context';
@@ -18,7 +19,7 @@ const TAB_ICON = {
     RestaurantsNavigator: 'md-restaurant',
     Map: 'md-map',
     SettingsNavigator: 'md-settings',
-    Checkout: 'md-cart',
+    CheckoutNavigator: 'md-cart',
 };
 
 const createScreenOptions = ({ route }) => {
@@ -28,8 +29,8 @@ const createScreenOptions = ({ route }) => {
         tabBarIcon: ({ size, color }) => (
             <Ionicons name={iconName} size={size} color={color} />
         ),
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: COLORS.brand.primary,
+        tabBarInactiveTintColor: COLORS.brand.muted,
         headerShown: false,
     };
 };
@@ -49,8 +50,8 @@ const AppNavigator = () => {
                                 }}
                             />
                             <Tab.Screen
-                                name="Checkout"
-                                component={CheckoutScreen}
+                                name="CheckoutNavigator"
+                                component={CheckoutNavigator}
                                 options={{
                                     title: 'Checkout',
                                 }}

@@ -9,6 +9,8 @@ const Icon = styled.Image`
 
 const RestaurantCard = styled(Card)`
     background-color: ${({ theme }) => theme.COLORS.bg.primary};
+    width: 95%;
+    align-self: center;
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`

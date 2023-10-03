@@ -1,6 +1,6 @@
 import React, { useReducer, useContext } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 
 import Spacer from '../../../components/Spacer/Spacer.component';
 import SafeArea from '../../../components/Utils/SafeArea.component';
@@ -52,8 +52,10 @@ const RestaurantDetail = ({ route, navigation }) => {
                     onPress={() => dispatch({ type: 'BREAKFAST_EXPANDED' })}
                 >
                     <List.Item title="Eggs Benedict" />
+                    <Divider />
                     <List.Item title="Classic Breakfast" />
                 </List.Accordion>
+                <Divider />
                 <List.Accordion
                     title="Lunch"
                     left={props => <List.Icon {...props} icon="hamburger" />}
@@ -61,9 +63,12 @@ const RestaurantDetail = ({ route, navigation }) => {
                     onPress={() => dispatch({ type: 'LUNCH_EXPANDED' })}
                 >
                     <List.Item title="Burger w/ Fries" />
+                    <Divider />
                     <List.Item title="Steak Sandwich" />
+                    <Divider />
                     <List.Item title="Mushroom Soup" />
                 </List.Accordion>
+                <Divider />
                 <List.Accordion
                     title="Dinner"
                     left={props => <List.Icon {...props} icon="food-variant" />}
@@ -71,9 +76,12 @@ const RestaurantDetail = ({ route, navigation }) => {
                     onPress={() => dispatch({ type: 'DINNER_EXPANDED' })}
                 >
                     <List.Item title="Spaghetti Bolognese" />
+                    <Divider />
                     <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
+                    <Divider />
                     <List.Item title="Steak Frites" />
                 </List.Accordion>
+                <Divider />
                 <List.Accordion
                     title="Drinks"
                     left={props => <List.Icon {...props} icon="cup" />}
@@ -81,9 +89,13 @@ const RestaurantDetail = ({ route, navigation }) => {
                     onPress={() => dispatch({ type: 'DRINKS_EXPANDED' })}
                 >
                     <List.Item title="Coffee" />
+                    <Divider />
                     <List.Item title="Tea" />
+                    <Divider />
                     <List.Item title="Modelo" />
+                    <Divider />
                     <List.Item title="Coke" />
+                    <Divider />
                     <List.Item title="Fanta" />
                 </List.Accordion>
             </ScrollView>
@@ -93,7 +105,7 @@ const RestaurantDetail = ({ route, navigation }) => {
                     mode="contained"
                     onPress={() => {
                         addToCart({ item: 'special', price: 1299 }, restaurant);
-                        navigation.navigate('Checkout');
+                        navigation.navigate('CheckoutNavigator');
                     }}
                 >
                     Order Special Only 12.99!
